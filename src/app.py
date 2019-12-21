@@ -10,6 +10,7 @@
 #
 from flask import Flask, render_template, request, jsonify
 import requests
+import sys
 
 app = Flask(__name__)
 
@@ -26,6 +27,8 @@ def index():
 #     data = {'square': square}
 #     data = jsonify(data)
 #     return data
+
+# https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/distance_matrix/driving/90.33687,23.470314;90.379249,23.497178;90.497009,23.546286?rtype=1&region=bgd
 
 @app.route('/square/', methods=['GET','POST'])
 def square():
@@ -64,16 +67,38 @@ def square():
     #multiple lat long api
     # arr = {'square':"source_latitude, source_longitude+destination_latitude+,+destination_longitude"}
     # print(arr)
+
+    #find distance
+    # str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/77.216721,28.644800;75.778885,26.922070?steps=false&rtype=1&alternatives=3"
+    str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/distance_matrix/driving/{},{};{},{}?rtype=0&region=ind".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
+    predict = requests.get(str)
+    data = predict.json()
+    print(data)
+    distance = data['results']['distances'][0][1]
+    duration = data['results']['durations'][0][1]
+
     str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/{},{};{},{}?steps=false&rtype=1".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
     resp = requests.get(str)
     route = resp.json()
-    geometry = route['routes'][0]['geometry']
-    arr = {'square': geometry}
+    geometry = ''
+    min = sys.maxsize
+    time = 0
+    print(route)
+    for element in route['routes']:
+        if element['distance']-1000 <= distance and element['distance']+1000 >= distance:
+            if element['distance'] < min:
+                min = element['distance']
+                time = element['duration']
+                geometry = element['geometry']
+                print(min)
+
+    # geometry = route['routes'][0]['geometry']
+    arr = {'geometry': geometry, 'time':time}
     arr = jsonify(arr)
     return arr
 
     # https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/distance_matrix_predictive/driving/77.5998448,12.5090914;77.5800417,12.5092973?dep_time=1531543500
-
+    # https: // apis.mapmyindia.com / advancedmaps / v1 / ejls5j1jcdu6z9w1pabuytir9wwituo8 / route_adv / driving / 77.131123, 28.552413;77.113091, 28.544649?steps = false & rtype = 1
 
     # str = "https://atlas.mapmyindia.com/api/places/textsearch/json?query={} phase 3&region=ind".format(source)
     # response_source = requests.get(str)

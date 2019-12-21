@@ -79,9 +79,11 @@ points = [];
 destination = data['destination']
 source = data['source']
 console.log("heya")
-points = data['square'];
+points = data['geometry'];
+time = data['time'];
+console.log(time)
 console.log(points)
-$('#square').html('Points Between ' + source + ' and ' + destination + ' is ' + points)
+$('#square').html('Points Between ' + source + ' and ' + destination + ' is ' + points + ' time ' + time)
 }
 });
 });
