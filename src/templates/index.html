@@ -1,0 +1,90 @@
+<!--    <!DOCTYPE html>-->
+<!--    <html lang='en'>-->
+<!--    	<head>-->
+<!--    		<title>Flask App</title>-->
+<!--    		<style type="text/css">-->
+<!--    			* {-->
+<!--    				font-family: sans-serif;-->
+<!--    			}-->
+<!--    		</style>-->
+<!--    	</head>-->
+<!--    	<body>-->
+<!--    		<h1>Square Calculator</h1>-->
+<!--    		<form method="post" id="form">-->
+<!--    			<label for="num">Enter Number : </label>-->
+<!--    			<input type="text" id="num" name="number" autofocus autocomplete="off">-->
+<!--    			<button>Post</button>-->
+<!--    		</form>-->
+<!--    		<p id="square"></p>-->
+<!--    		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+<!--    		<script>-->
+<!--    			$('#form').on('submit', function(e){-->
+<!--    				var number = $('#num').val();-->
+<!--    				e.preventDefault();-->
+<!--    				$.ajax({-->
+<!--    					url: 'http://127.0.0.1:5000/square/',-->
+<!--    					data: {'number': number},-->
+<!--    					method: 'POST',-->
+<!--    					success: function(data) {-->
+<!--    						$('#num').val('');-->
+<!--    						$('#square').html('Square of ' + number + ' is ' + data['square'])-->
+<!--    					}-->
+<!--    				});-->
+<!--    			});-->
+<!--    		</script>-->
+<!--    	</body>-->
+<!--    </html>-->
+<html lang='en'>
+<head>
+<title>Flask App</title>
+<style type="text/css">
+* {
+font-family: sans-serif;
+}
+</style>
+</head>
+<body>
+<h1>Alternate Routes</h1>
+<form method="post" id="form">
+<label for="src">Select Source: </label>
+<select id="src">
+<option value="JanakPuri">Janak Puri</option>
+<option value="Okhla">Okhla</option>
+<option value="Noida">Noida</option>
+<option value="Kalkaji">Kalkaji</option>
+</select>
+<label for="dsc">Select Destination: </label>
+<select id="dsc">
+<option value="JanakPuri">Janak Puri</option>
+<option value="Okhla">Okhla</option>
+<option value="Noida">Noida</option>
+<option value="Kalkaji">Kalkaji</option>
+</select>
+<!--<input type="text" id="num" name="number" autofocus autocomplete="off">-->
+<button>Post</button>
+</form>
+<p id="square"></p>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+$('#form').on('submit', function(e){
+var source = $('#src').val();
+var destination = $('#dsc').val();
+e.preventDefault();
+$.ajax({
+url: 'http://127.0.0.1:5000/square/',
+data:   {'source': source, 'destination': destination},
+method: 'POST',
+success: function(data) {
+points = [];
+destination = data['destination']
+source = data['source']
+console.log("heya")
+points = data['square'];
+console.log(points)
+$('#square').html('Points Between ' + source + ' and ' + destination + ' is ' + points)
+}
+});
+});
+</script>
+</body>
+</html>
