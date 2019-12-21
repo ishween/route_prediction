@@ -72,6 +72,7 @@ def square():
     # str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/77.216721,28.644800;75.778885,26.922070?steps=false&rtype=1&alternatives=3"
     str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/distance_matrix/driving/{},{};{},{}?rtype=0&region=ind".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
     predict = requests.get(str)
+    print(predict)
     data = predict.json()
     print(data)
     distance = data['results']['distances'][0][1]
@@ -79,6 +80,7 @@ def square():
 
     str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/{},{};{},{}?steps=false&rtype=1".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
     resp = requests.get(str)
+    # print(resp)
     route = resp.json()
     geometry = ''
     min = sys.maxsize

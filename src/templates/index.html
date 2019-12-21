@@ -1,39 +1,96 @@
-<!--    <!DOCTYPE html>-->
-<!--    <html lang='en'>-->
-<!--    	<head>-->
-<!--    		<title>Flask App</title>-->
-<!--    		<style type="text/css">-->
-<!--    			* {-->
-<!--    				font-family: sans-serif;-->
-<!--    			}-->
-<!--    		</style>-->
-<!--    	</head>-->
-<!--    	<body>-->
-<!--    		<h1>Square Calculator</h1>-->
-<!--    		<form method="post" id="form">-->
-<!--    			<label for="num">Enter Number : </label>-->
-<!--    			<input type="text" id="num" name="number" autofocus autocomplete="off">-->
-<!--    			<button>Post</button>-->
-<!--    		</form>-->
-<!--    		<p id="square"></p>-->
-<!--    		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
-<!--    		<script>-->
-<!--    			$('#form').on('submit', function(e){-->
-<!--    				var number = $('#num').val();-->
-<!--    				e.preventDefault();-->
-<!--    				$.ajax({-->
-<!--    					url: 'http://127.0.0.1:5000/square/',-->
-<!--    					data: {'number': number},-->
-<!--    					method: 'POST',-->
-<!--    					success: function(data) {-->
-<!--    						$('#num').val('');-->
-<!--    						$('#square').html('Square of ' + number + ' is ' + data['square'])-->
-<!--    					}-->
-<!--    				});-->
-<!--    			});-->
-<!--    		</script>-->
-<!--    	</body>-->
-<!--    </html>-->
+<!--&lt;!&ndash;    <!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;    <html lang='en'>&ndash;&gt;-->
+<!--&lt;!&ndash;    	<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    		<title>Flask App</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    		<style type="text/css">&ndash;&gt;-->
+<!--&lt;!&ndash;    			* {&ndash;&gt;-->
+<!--&lt;!&ndash;    				font-family: sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;    			}&ndash;&gt;-->
+<!--&lt;!&ndash;    		</style>&ndash;&gt;-->
+<!--&lt;!&ndash;    	</head>&ndash;&gt;-->
+<!--&lt;!&ndash;    	<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    		<h1>Square Calculator</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    		<form method="post" id="form">&ndash;&gt;-->
+<!--&lt;!&ndash;    			<label for="num">Enter Number : </label>&ndash;&gt;-->
+<!--&lt;!&ndash;    			<input type="text" id="num" name="number" autofocus autocomplete="off">&ndash;&gt;-->
+<!--&lt;!&ndash;    			<button>Post</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    		</form>&ndash;&gt;-->
+<!--&lt;!&ndash;    		<p id="square"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;    		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;    		<script>&ndash;&gt;-->
+<!--&lt;!&ndash;    			$('#form').on('submit', function(e){&ndash;&gt;-->
+<!--&lt;!&ndash;    				var number = $('#num').val();&ndash;&gt;-->
+<!--&lt;!&ndash;    				e.preventDefault();&ndash;&gt;-->
+<!--&lt;!&ndash;    				$.ajax({&ndash;&gt;-->
+<!--&lt;!&ndash;    					url: 'http://127.0.0.1:5000/square/',&ndash;&gt;-->
+<!--&lt;!&ndash;    					data: {'number': number},&ndash;&gt;-->
+<!--&lt;!&ndash;    					method: 'POST',&ndash;&gt;-->
+<!--&lt;!&ndash;    					success: function(data) {&ndash;&gt;-->
+<!--&lt;!&ndash;    						$('#num').val('');&ndash;&gt;-->
+<!--&lt;!&ndash;    						$('#square').html('Square of ' + number + ' is ' + data['square'])&ndash;&gt;-->
+<!--&lt;!&ndash;    					}&ndash;&gt;-->
+<!--&lt;!&ndash;    				});&ndash;&gt;-->
+<!--&lt;!&ndash;    			});&ndash;&gt;-->
+<!--&lt;!&ndash;    		</script>&ndash;&gt;-->
+<!--&lt;!&ndash;    	</body>&ndash;&gt;-->
+<!--&lt;!&ndash;    </html>&ndash;&gt;-->
+<!--<html lang='en'>-->
+<!--<head>-->
+<!--<title>Flask App</title>-->
+<!--<style type="text/css">-->
+<!--* {-->
+<!--font-family: sans-serif;-->
+<!--}-->
+<!--</style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Alternate Routes</h1>-->
+<!--<form method="post" id="form">-->
+<!--<label for="src">Select Source: </label>-->
+<!--<select id="src">-->
+<!--<option value="JanakPuri">Janak Puri</option>-->
+<!--<option value="Okhla">Okhla</option>-->
+<!--<option value="Noida">Noida</option>-->
+<!--<option value="Kalkaji">Kalkaji</option>-->
+<!--</select>-->
+<!--<label for="dsc">Select Destination: </label>-->
+<!--<select id="dsc">-->
+<!--<option value="JanakPuri">Janak Puri</option>-->
+<!--<option value="Okhla">Okhla</option>-->
+<!--<option value="Noida">Noida</option>-->
+<!--<option value="Kalkaji">Kalkaji</option>-->
+<!--</select>-->
+<!--&lt;!&ndash;<input type="text" id="num" name="number" autofocus autocomplete="off">&ndash;&gt;-->
+<!--<button>Post</button>-->
+<!--</form>-->
+<!--<p id="square"></p>-->
+<!--<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+<!--<script>-->
+<!--$('#form').on('submit', function(e){-->
+<!--var source = $('#src').val();-->
+<!--var destination = $('#dsc').val();-->
+<!--e.preventDefault();-->
+<!--$.ajax({-->
+<!--url: 'http://127.0.0.1:5000/square/',-->
+<!--data:   {'source': source, 'destination': destination},-->
+<!--method: 'POST',-->
+<!--success: function(data) {-->
+<!--points = [];-->
+<!--destination = data['destination']-->
+<!--source = data['source']-->
+<!--console.log("heya")-->
+<!--points = data['geometry'];-->
+<!--time = data['time'];-->
+<!--console.log(time)-->
+<!--console.log(points)-->
+<!--$('#square').html('Points Between ' + source + ' and ' + destination + ' is ' + points + ' time ' + time)-->
+<!--}-->
+<!--});-->
+<!--});-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
 <html lang='en'>
 <head>
 <title>Flask App</title>
@@ -75,17 +132,35 @@ url: 'http://127.0.0.1:5000/square/',
 data:   {'source': source, 'destination': destination},
 method: 'POST',
 success: function(data) {
-points = [];
-destination = data['destination']
-source = data['source']
-console.log("heya")
-points = data['geometry'];
-time = data['time'];
-console.log(time)
-console.log(points)
-$('#square').html('Points Between ' + source + ' and ' + destination + ' is ' + points + ' time ' + time)
+point = [];
+point = data['geometry'];
+tm = data['time'];
+console.log(point)
+console.log(tm)
+//$('#square').html('Points Between ' + source + ' and ' + destination + ' is ' + points)
 }
 });
+encoded = point;
+    var points = [],index = 0, len = encoded.length;
+    var lat = 0, lng = 0;
+    while (index < len) {
+        var b, shift = 0, result = 0;
+        do {
+            b = encoded.charAt(index++).charCodeAt(0) - 63;
+            result |= (b & 0x1f) << shift;
+            shift += 5;
+        } while (b >= 0x20);
+       var dlat = ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1));
+        lat += dlat;shift = 0;result = 0;
+        do {
+            b = encoded.charAt(index++).charCodeAt(0) - 63;
+            result |= (b & 0x1f) << shift;
+            shift += 5;
+        } while (b >= 0x20);
+        var dlng = ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1));
+        lng += dlng;points.push([lat / 1E5, lng / 1E5])
+    }
+    $('#square').html('Points on the Optimal Route are: '+points+'<br>Time Required is: '+tm);
 });
 </script>
 </body>
