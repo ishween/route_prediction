@@ -37,9 +37,15 @@ def square():
 
     #oauth tokens api
     # oauth = "https://outpost.mapmyindia.com/api/security/oauth/token"
+    # parameters = {"grant_type": "client_credentials",
+    #                 "client_id": "O3wMiHiw95v3LsJ-IiCHxZ2HM2c8F5H8xfdzLnrPdbEkNGsIbvSqKhFUmMHjOz3u1eeu1aIREb42bpDzRij_bA==",
+    #                 "client_secret": "QJcH6ymTGazxFG8ml9UT-UFotuIYSvB-rWynBvJFd1HJULek4Si3KfyimmwjmlKcQVMHwVW8e-rO7J9VaufHgY6XBMp0LC1O"}
+
+    # simran di credentials
     parameters = {"grant_type": "client_credentials",
-                    "client_id": "O3wMiHiw95v3LsJ-IiCHxZ2HM2c8F5H8xfdzLnrPdbEkNGsIbvSqKhFUmMHjOz3u1eeu1aIREb42bpDzRij_bA==",
-                    "client_secret": "QJcH6ymTGazxFG8ml9UT-UFotuIYSvB-rWynBvJFd1HJULek4Si3KfyimmwjmlKcQVMHwVW8e-rO7J9VaufHgY6XBMp0LC1O"}
+                  "client_id": "uGlZhB6jaQrOIDDpMHcVhtkKs2dwLw6fpxd13ixBaSSSUg3EiW_je679AipUqKc2C4znacDnV7s9Gtc9YrrOZQ==",
+                  "client_secret": "9K_q_9Q2GHOu0mO9quT6-F5hcdWkz01xynIjefCM2iBgTgkWb0Ores6ov9ov0E502XLF8UUDyy9bakh2N0bzSaBNYjC-nFAF"}
+
     resp = requests.post("https://outpost.mapmyindia.com/api/security/oauth/token", params=parameters)
     tokens = resp.json()
     access_token = tokens['access_token']
@@ -70,7 +76,10 @@ def square():
 
     #find distance
     # str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/77.216721,28.644800;75.778885,26.922070?steps=false&rtype=1&alternatives=3"
-    str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/distance_matrix/driving/{},{};{},{}?rtype=0&region=ind".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
+    # str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/distance_matrix/driving/{},{};{},{}?rtype=0&region=ind".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
+
+    # simran
+    str = "https://apis.mapmyindia.com/advancedmaps/v1/9kibr32m4r29uw8sgsjan8rdu89v9yit/distance_matrix/driving/{},{};{},{}?rtype=0&region=ind".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
     predict = requests.get(str)
     print(predict)
     data = predict.json()
@@ -78,7 +87,11 @@ def square():
     distance = data['results']['distances'][0][1]
     duration = data['results']['durations'][0][1]
 
-    str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/{},{};{},{}?steps=false&rtype=1".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
+    # str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/{},{};{},{}?steps=false&rtype=1".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
+
+    #simran
+    str = "https://apis.mapmyindia.com/advancedmaps/v1/9kibr32m4r29uw8sgsjan8rdu89v9yit/route_adv/driving/{},{};{},{}?steps=false&rtype=1".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
+
     resp = requests.get(str)
     # print(resp)
     route = resp.json()

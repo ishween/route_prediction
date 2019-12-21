@@ -93,35 +93,71 @@
 
 <html lang='en'>
 <head>
-<title>Flask App</title>
+<title>Koderz Hack</title>
 <style type="text/css">
 * {
 font-family: sans-serif;
 }
+body
+{
+background-color: lightgrey;
+}
+label
+{
+font-size: 20px;
+}
+th
+{
+text-align: left;
+}
 </style>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-<h1>Alternate Routes</h1>
+<center>
+<h1><u>Alternate Routes</u></h1>
 <form method="post" id="form">
-<label for="src">Select Source: </label>
+<table>
+<tr>
+<th><label for="src">Select Source: </label></th>
+<td>
 <select id="src">
 <option value="JanakPuri">Janak Puri</option>
 <option value="Okhla">Okhla</option>
 <option value="Noida">Noida</option>
 <option value="Kalkaji">Kalkaji</option>
-</select>
-<label for="dsc">Select Destination: </label>
+</select><br>
+</td>
+</tr>
+
+<tr>
+<th><label for="dsc">Select Destination: </label></th>
+<td>
 <select id="dsc">
 <option value="JanakPuri">Janak Puri</option>
 <option value="Okhla">Okhla</option>
 <option value="Noida">Noida</option>
 <option value="Kalkaji">Kalkaji</option>
-</select>
+</select><br>
+</td>
+</tr>
+
+<tr>
+<th><label for="dt">Select Date: </label></th>
+<td>
+<input type="date">
+</td>
+</tr>
 <!--<input type="text" id="num" name="number" autofocus autocomplete="off">-->
-<button>Post</button>
+
+<tr>
+<td colspan="2"><button>Submit</button></td>
+</tr>
+</table>
 </form>
-<p id="square"></p>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<h3>
+<p id="display"></p>
+</center>
 <script>
 $('#form').on('submit', function(e){
 var source = $('#src').val();
@@ -135,8 +171,6 @@ success: function(data) {
 point = [];
 point = data['geometry'];
 tm = data['time'];
-console.log(point)
-console.log(tm)
 //$('#square').html('Points Between ' + source + ' and ' + destination + ' is ' + points)
 }
 });
@@ -160,7 +194,7 @@ encoded = point;
         var dlng = ((result & 1) !== 0 ? ~(result >> 1) : (result >> 1));
         lng += dlng;points.push([lat / 1E5, lng / 1E5])
     }
-    $('#square').html('Points on the Optimal Route are: '+points+'<br>Time Required is: '+tm);
+    $('#display').html('<h3><u>OUTPUT</u></h3><br>Points on the Optimal Route are: '+points+'<br>Time Required is: '+tm);
 });
 </script>
 </body>
