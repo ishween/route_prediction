@@ -4,4 +4,4 @@ __author__ = 'ishween'
 DEBUG = True
 
 PORT = os.environ['PORT']
-URI = os.environ['URI']
+# URI = os.environ['URI']

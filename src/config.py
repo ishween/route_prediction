@@ -13,4 +13,4 @@ DEBUG = True
 # else:
 import src.config_server as config_server
 PORT = config_server.PORT
-URI = config_server.URI
+# URI = config_server.URI
