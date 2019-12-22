@@ -95,48 +95,48 @@ def square():
     resp = requests.get(str)
     # print(resp)
     route = resp.json()
-    driving_geometry = ''
+    geometry = ''
     min = sys.maxsize
-    driving_time = 0
+    time = 0
     print(route)
     for element in route['routes']:
         if element['distance']-1000 <= distance and element['distance']+1000 >= distance:
             if element['distance'] < min:
                 min = element['distance']
-                driving_time = element['duration']
-                driving_geometry = element['geometry']
+                time = element['duration']
+                geometry = element['geometry']
                 print(min)
 
     #BIKING
-    str = "https://apis.mapmyindia.com/advancedmaps/v1/9kibr32m4r29uw8sgsjan8rdu89v9yit/distance_matrix/biking/{},{};{},{}?rtype=0&region=ind".format(
-        source_longitude, source_latitude, destination_longitude, destination_latitude)
-    predict = requests.get(str)
-    print(predict)
-    data = predict.json()
-    print(data)
-    distance = data['results']['distances'][0][1]
-    duration = data['results']['durations'][0][1]
-
-    # str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/{},{};{},{}?steps=false&rtype=1".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
-
-    # simran
-    str = "https://apis.mapmyindia.com/advancedmaps/v1/9kibr32m4r29uw8sgsjan8rdu89v9yit/route_adv/biking/{},{};{},{}?steps=false&rtype=1".format(
-        source_longitude, source_latitude, destination_longitude, destination_latitude)
-
-    resp = requests.get(str)
-    # print(resp)
-    route = resp.json()
-    biking_geometry = ''
-    min = sys.maxsize
-    biking_time = 0
-    print(route)
-    for element in route['routes']:
-        if element['distance'] - 1000 <= distance and element['distance'] + 1000 >= distance:
-            if element['distance'] < min:
-                min = element['distance']
-                biking_time = element['duration']
-                biking_geometry = element['geometry']
-                print(min)
+    # str = "https://apis.mapmyindia.com/advancedmaps/v1/9kibr32m4r29uw8sgsjan8rdu89v9yit/distance_matrix/biking/{},{};{},{}?rtype=0&region=ind".format(
+    #     source_longitude, source_latitude, destination_longitude, destination_latitude)
+    # predict = requests.get(str)
+    # print(predict)
+    # data = predict.json()
+    # print(data)
+    # distance = data['results']['distances'][0][1]
+    # duration = data['results']['durations'][0][1]
+    #
+    # # str = "https://apis.mapmyindia.com/advancedmaps/v1/ejls5j1jcdu6z9w1pabuytir9wwituo8/route_adv/driving/{},{};{},{}?steps=false&rtype=1".format(source_longitude, source_latitude, destination_longitude, destination_latitude)
+    #
+    # # simran
+    # str = "https://apis.mapmyindia.com/advancedmaps/v1/9kibr32m4r29uw8sgsjan8rdu89v9yit/route_adv/biking/{},{};{},{}?steps=false&rtype=1".format(
+    #     source_longitude, source_latitude, destination_longitude, destination_latitude)
+    #
+    # resp = requests.get(str)
+    # # print(resp)
+    # route = resp.json()
+    # biking_geometry = ''
+    # min = sys.maxsize
+    # biking_time = 0
+    # print(route)
+    # for element in route['routes']:
+    #     if element['distance'] - 1000 <= distance and element['distance'] + 1000 >= distance:
+    #         if element['distance'] < min:
+    #             min = element['distance']
+    #             biking_time = element['duration']
+    #             biking_geometry = element['geometry']
+    #             print(min)
 
     # print("yes")
     #WALKING
@@ -203,7 +203,7 @@ def square():
     #             print(min)
 
     # geometry = route['routes'][0]['geometry']
-    arr = {'driving_geometry': driving_geometry, 'driving_time':driving_time, 'biking_geometry': biking_geometry, 'biking_time': biking_time}
+    arr = {'geometry': geometry, 'time': time}
     arr = jsonify(arr)
     return arr
 
@@ -227,6 +227,6 @@ def square():
     # response = requests.get(str)
 
 
-
+#
 # if __name__ == '__main__':
 #     app.run(debug=True)
